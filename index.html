@@ -1,0 +1,659 @@
+<!doctype html>
+<!--
+  ZIVARAA — storefront concept.
+  Palette and type are taken from the brand's own Instagram (@shopzivaraa):
+  blush-ivory logo disc, mocha letterspaced serif wordmark, cream highlight
+  medallions with fine gold line art, white + gold-foil packaging.
+  Photos: the brand's own Instagram posts (@shopzivaraa), used for this preview.
+  Product names come from their captions; prices are samples until the real
+  price list is in.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>ZIVARAA | Everyday Jewellery</title>
+<meta name="description" content="18k gold stainless steel jewellery. Water-resistant, hypoallergenic, same-day delivery in Brampton and Mississauga.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#FBF7F2;      /* page */
+  --blush:#F5E9E1;      /* logo disc, product grounds */
+  --linen:#EADCCF;      /* pouch, borders */
+  --mocha:#5B4335;      /* wordmark, primary text + buttons */
+  --espresso:#33251D;   /* headings */
+  --taupe:#7C665A;      /* secondary text (4.9:1 on ivory) */
+  --gold:#B8925A;       /* decorative line art only — never text */
+  --gold-soft:#D9C19A;
+  --white:#FFFFFF;
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Jost",system-ui,sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --gutter:clamp(16px,4vw,48px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--mocha);font:300 16px/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:1.5px solid var(--mocha);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 var(--gutter)}
+.wordmark{font-family:var(--serif);font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--mocha)}
+.eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);font-weight:400}
+h1,h2,h3{font-family:var(--serif);font-weight:400;color:var(--espresso);line-height:1.08}
+h2{font-size:clamp(34px,4.4vw,52px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:50px;padding:0 30px;background:var(--mocha);color:var(--ivory);font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:400;border-radius:0;transition:background .2s var(--ease),transform .15s var(--ease)}
+.btn:hover{background:var(--espresso)}
+.btn:active{transform:scale(.98)}
+.btn.ghost{background:transparent;color:var(--mocha);box-shadow:inset 0 0 0 1px var(--mocha)}
+.btn.ghost:hover{background:var(--mocha);color:var(--ivory)}
+.heart{display:inline-block;width:7px;height:7px;border-radius:50%;vertical-align:middle;margin:0 10px}
+.heart.w{background:var(--white);box-shadow:0 0 0 1px var(--linen)}
+.heart.b{background:#8A5F45}
+
+/* announcement */
+.announce{background:var(--mocha);color:var(--blush);font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:9px 16px}
+
+/* header */
+header{position:sticky;top:0;z-index:40;background:rgba(251,247,242,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--linen)}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:72px}
+.nav-links{display:flex;gap:28px;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.nav-links a{position:relative;padding:4px 0}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--mocha);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
+@media (hover:hover){.nav-links a:hover::after{transform:scaleX(1)}}
+.nav .wordmark{font-size:26px;text-align:center}
+.nav-tools{display:flex;justify-content:flex-end;gap:6px}
+.icon-btn{width:44px;height:44px;display:grid;place-items:center;position:relative;border-radius:50%;transition:background .2s}
+.icon-btn:hover{background:var(--blush)}
+.icon-btn svg{width:21px;height:21px;stroke:var(--mocha);fill:none;stroke-width:1.3}
+.count{position:absolute;top:5px;right:4px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--mocha);color:var(--ivory);font-size:10px;display:grid;place-items:center;font-weight:500;opacity:0;transform:scale(.6);transition:transform .2s var(--ease),opacity .2s var(--ease)}
+.count.on{opacity:1;transform:scale(1)}
+.count.bump{animation:bump .35s var(--ease)}
+@keyframes bump{50%{transform:scale(1.3)}}
+.menu-btn{display:none}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,6vw,96px);align-items:center;padding-top:clamp(48px,8vw,112px);padding-bottom:clamp(64px,9vw,128px)}
+.hero h1{font-size:clamp(46px,6.6vw,88px);font-weight:400;letter-spacing:-.01em;margin:18px 0 22px}
+.hero h1 em{font-style:italic;color:var(--mocha)}
+.hero p.lede{font-size:18px;max-width:440px;color:var(--taupe)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.promise{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:44px;font-size:13px;letter-spacing:.06em;color:var(--taupe)}
+.promise span{display:flex;align-items:center;gap:9px}
+.promise svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.2}
+.hero-art{position:relative;justify-self:center;width:min(100%,460px)}
+.arch{aspect-ratio:3/4;border-radius:230px 230px 0 0;overflow:hidden;background:var(--blush)}
+.arch img{width:100%;height:100%;object-fit:cover}
+.seal{position:absolute;left:-38px;bottom:42px;width:132px;height:132px;border-radius:50%;background:var(--blush);display:grid;place-items:center;box-shadow:0 0 0 6px var(--ivory),0 0 0 7px var(--linen)}
+.seal .wordmark{font-size:13px;letter-spacing:.3em;padding-left:.3em}
+.seal svg{position:absolute;inset:0;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* medallion category control — echoes the IG highlights */
+.cats{padding:8px 0 24px}
+.medals{display:flex;justify-content:center;gap:clamp(14px,3vw,40px);overflow-x:auto;padding:8px 4px 4px;scrollbar-width:none}
+.medals::-webkit-scrollbar{display:none}
+.medal{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:12px;font-size:13px;letter-spacing:.08em}
+.medal .disc{width:92px;height:92px;border-radius:50%;background:var(--blush);display:grid;place-items:center;box-shadow:0 0 0 1px var(--linen);transition:transform .3s var(--ease)}
+.medal .disc svg{width:46px;height:46px;stroke:var(--gold);fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+@media (hover:hover){.medal:hover .disc{transform:translateY(-3px)}}
+.medal[aria-pressed="true"] .disc{box-shadow:0 0 0 1px var(--ivory),0 0 0 3px var(--mocha)}
+.medal[aria-pressed="true"] .label{color:var(--espresso);font-weight:400}
+.medal .label{color:var(--taupe)}
+
+/* shop */
+.shop{padding:clamp(48px,6vw,80px) 0 clamp(80px,10vw,140px)}
+.shop-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.shop-head .sub{color:var(--taupe);margin-top:8px}
+.sort{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.08em;color:var(--taupe)}
+.sort select{font:inherit;color:var(--mocha);background:transparent;border:0;border-bottom:1px solid var(--linen);padding:6px 22px 6px 2px;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235B4335' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.4vw,32px) clamp(12px,2vw,24px)}
+.card{display:flex;flex-direction:column;gap:14px;opacity:1;transition:opacity .3s var(--ease)}
+.card.hide{display:none}
+.card .img{position:relative;aspect-ratio:4/5;background:var(--blush);overflow:hidden;cursor:pointer}
+.card .img img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease),opacity .5s var(--ease)}
+.card .img img.alt{position:absolute;inset:0;opacity:0}
+@media (hover:hover){.card .img:hover img{transform:scale(1.04)}.card .img:hover img.alt{opacity:1}}
+.tag{position:absolute;top:12px;left:12px;background:var(--ivory);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;padding:5px 9px;color:var(--mocha)}
+.quick{position:absolute;left:12px;right:12px;bottom:12px;height:44px;background:var(--ivory);color:var(--mocha);font-size:12px;letter-spacing:.16em;text-transform:uppercase;transform:translateY(8px);opacity:0;transition:opacity .25s var(--ease),transform .25s var(--ease),background .2s}
+.quick:hover{background:var(--mocha);color:var(--ivory)}
+@media (hover:hover){.card .img:hover .quick,.quick:focus-visible{opacity:1;transform:none}}
+@media (hover:none){.quick{opacity:1;transform:none;left:auto;right:10px;bottom:10px;width:40px;height:40px;border-radius:50%;font-size:0;letter-spacing:0}.quick::before{content:"+";font-size:22px;font-weight:300;line-height:1}.quick[data-qv]::before{content:"\2026";font-size:18px}}
+.card h3{font-size:21px;line-height:1.2}
+.card .meta{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.card .price{font-size:15px;color:var(--mocha);font-variant-numeric:tabular-nums}
+.card .material{font-size:12.5px;color:var(--taupe);letter-spacing:.04em}
+
+/* two ways */
+.twoways{background:var(--blush);padding:clamp(72px,10vw,140px) 0}
+.tw-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center}
+.tw-visual{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tw-visual figure{background:var(--ivory);aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px}
+.tw-visual figure:nth-child(2){margin-top:56px}
+.tw-visual svg{width:78%;stroke:var(--gold);fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.tw-visual figcaption{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--mocha)}
+.tw-copy p{color:var(--taupe);max-width:420px;margin:20px 0 32px;font-size:17px}
+.tw-copy h2 em{font-style:italic}
+
+.tw-photo{aspect-ratio:1;overflow:hidden;background:var(--ivory)}
+.tw-photo img{width:100%;height:100%;object-fit:cover}
+.ub-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ub-pair img{width:100%;aspect-ratio:3/4.4;object-fit:cover}
+.ub-pair img:nth-child(2){margin-top:56px}
+/* why steel — show the properties */
+.props{padding:clamp(80px,10vw,140px) 0}
+.props-head{text-align:center;max-width:640px;margin:0 auto 56px}
+.props-head p{color:var(--taupe);margin-top:14px}
+.prop-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--linen)}
+.prop{padding:36px 24px 8px;text-align:center;border-right:1px solid var(--linen)}
+.prop:last-child{border-right:0}
+.prop svg{width:56px;height:56px;stroke:var(--gold);fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;margin:0 auto 18px}
+.prop h3{font-size:24px;margin-bottom:6px}
+.prop p{font-size:14px;color:var(--taupe)}
+
+/* unboxing */
+.unbox{padding:0 0 clamp(80px,10vw,140px)}
+.ub-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,6vw,96px);align-items:center}
+.ub-stage{position:relative;background:linear-gradient(180deg,var(--blush),#EFE0D5);aspect-ratio:5/4;display:grid;place-items:center;overflow:hidden}
+.box{position:relative;width:52%;aspect-ratio:1/1.1;background:var(--white);box-shadow:0 30px 40px -24px rgba(51,37,29,.35),0 2px 0 var(--linen);display:grid;place-items:center;transform:rotate(-4deg)}
+.box .wordmark{font-size:clamp(15px,2vw,22px);color:var(--gold);letter-spacing:.38em;padding-left:.38em}
+.box::before{content:"";position:absolute;inset:10px;border:1px solid #F0E6DA}
+.pouch{position:absolute;right:12%;bottom:12%;width:24%;aspect-ratio:3/4;background:#E8DBC9;border-radius:6px 6px 14px 14px;transform:rotate(8deg);box-shadow:0 18px 26px -16px rgba(51,37,29,.35);display:grid;place-items:center}
+.pouch::before{content:"";position:absolute;top:16%;left:8%;right:8%;height:2px;background:#8A5F45;border-radius:2px}
+.pouch span{font-family:var(--serif);font-size:clamp(8px,.9vw,11px);letter-spacing:.3em;color:#8A5F45;padding-left:.3em;margin-top:18%}
+.ub-copy ol{list-style:none;margin-top:30px;counter-reset:s}
+.ub-copy li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:4px 14px;padding:16px 0;border-top:1px solid var(--linen)}
+.ub-copy li::before{content:"0" counter(s);font-family:var(--serif);font-size:22px;color:var(--gold);grid-row:span 2}
+.ub-copy li b{font-weight:400;color:var(--espresso)}
+.ub-copy li span{font-size:14px;color:var(--taupe)}
+
+/* delivery checker */
+.deliver{background:var(--mocha);color:var(--blush);padding:clamp(64px,8vw,100px) 0}
+.dl-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.deliver h2{color:var(--ivory)}
+.deliver p{color:#E3D2C6;margin-top:12px;max-width:460px}
+.dl-form{display:flex;border-bottom:1px solid var(--blush)}
+.dl-form label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.dl-form input{flex:1;min-width:0;background:transparent;border:0;color:var(--ivory);font:300 22px var(--sans);letter-spacing:.14em;text-transform:uppercase;padding:12px 0}
+.dl-form input::placeholder{color:#B9A496;letter-spacing:.1em;text-transform:none;font-size:18px}
+.dl-form input:focus{outline:none}
+.dl-form button{color:var(--ivory);font-size:12px;letter-spacing:.2em;text-transform:uppercase;padding:0 4px}
+.dl-result{min-height:28px;margin-top:16px;font-size:15px;color:var(--ivory)}
+.dl-result b{font-weight:500}
+
+/* gram */
+.gram{padding:clamp(80px,10vw,140px) 0 clamp(64px,8vw,100px);text-align:center}
+.gram h2 a{border-bottom:1px solid var(--gold-soft)}
+.gram-row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:40px}
+.gram-row div{aspect-ratio:1;background:var(--blush);overflow:hidden}
+.gram-row img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+@media (hover:hover){.gram-row a:hover img{transform:scale(1.05)}}
+.gram-row a{display:block;width:100%;height:100%}
+
+/* first order */
+.first{border-top:1px solid var(--linen);border-bottom:1px solid var(--linen);padding:56px 0}
+.first .inner{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+.first h2{font-size:clamp(28px,3.4vw,40px)}
+.first p{color:var(--taupe);margin-top:6px}
+.signup{display:flex;gap:0;flex:1;max-width:460px;min-width:260px}
+.signup input{flex:1;min-width:0;height:50px;border:1px solid var(--mocha);border-right:0;background:transparent;padding:0 16px;font:300 15px var(--sans);color:var(--mocha)}
+.signup input::placeholder{color:var(--taupe)}
+
+footer{padding:56px 0 40px;font-size:14px;color:var(--taupe)}
+.foot{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+.foot .wordmark{font-size:22px;display:block;margin-bottom:14px}
+.foot h4{font:400 12px var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--mocha);margin-bottom:14px}
+.foot li{list-style:none;padding:3px 0}
+.legal{margin-top:48px;padding-top:20px;border-top:1px solid var(--linen);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px}
+
+/* drawers */
+.scrim{position:fixed;inset:0;background:rgba(51,37,29,.35);opacity:0;pointer-events:none;transition:opacity .3s var(--ease);z-index:60}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--ivory);z-index:70;transform:translateX(100%);transition:transform .38s var(--ease);display:flex;flex-direction:column}
+.drawer.on{transform:none}
+.dr-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--linen)}
+.dr-head h3{font-size:26px}
+.dr-body{flex:1;overflow-y:auto;padding:8px 24px}
+.dr-foot{padding:20px 24px 24px;border-top:1px solid var(--linen)}
+.line{display:grid;grid-template-columns:76px 1fr auto;gap:14px;padding:18px 0;border-bottom:1px solid var(--linen);align-items:start}
+.line .thumb{aspect-ratio:4/5;background:var(--blush);overflow:hidden}
+.line .thumb img{width:100%;height:100%;object-fit:cover}
+.line h4{font:400 19px var(--serif);color:var(--espresso)}
+.line small{display:block;color:var(--taupe);font-size:12.5px}
+.qty{display:inline-flex;align-items:center;margin-top:10px;box-shadow:inset 0 0 0 1px var(--linen)}
+.qty button{width:32px;height:32px}
+.qty span{min-width:24px;text-align:center;font-size:14px;font-variant-numeric:tabular-nums}
+.line .rm{font-size:12px;text-decoration:underline;color:var(--taupe);margin-top:8px}
+.line .lp{font-variant-numeric:tabular-nums}
+.empty{text-align:center;padding:64px 12px;color:var(--taupe)}
+.empty svg{width:64px;height:64px;stroke:var(--gold);fill:none;stroke-width:1;margin:0 auto 16px}
+.row{display:flex;justify-content:space-between;padding:4px 0;font-variant-numeric:tabular-nums}
+.row.total{font-size:18px;color:var(--espresso);padding-top:10px}
+.note{font-size:12.5px;color:var(--taupe);margin:10px 0 16px}
+.dr-foot .btn{width:100%}
+
+/* quick view */
+.qv{position:fixed;inset:0;z-index:70;display:grid;place-items:center;padding:16px;pointer-events:none}
+.qv-card{pointer-events:auto;width:min(920px,100%);max-height:calc(100vh - 32px);overflow:auto;background:var(--ivory);display:grid;grid-template-columns:1fr 1fr;opacity:0;transform:translateY(12px) scale(.98);transition:opacity .28s var(--ease),transform .28s var(--ease);visibility:hidden}
+.qv.on .qv-card{opacity:1;transform:none;visibility:visible}
+.qv-img{background:var(--blush);aspect-ratio:4/5}
+.qv-img img{width:100%;height:100%;object-fit:cover}
+.qv-info{padding:36px 32px;display:flex;flex-direction:column;gap:14px;position:relative}
+.qv-info h3{font-size:36px}
+.qv-info .price{font-size:18px}
+.qv-info p{color:var(--taupe);font-size:15px}
+.opt{display:flex;gap:8px;flex-wrap:wrap}
+.opt button{height:38px;padding:0 14px;box-shadow:inset 0 0 0 1px var(--linen);font-size:13px;letter-spacing:.06em}
+.opt button[aria-pressed="true"]{box-shadow:inset 0 0 0 1px var(--mocha)}
+.qv-close{position:absolute;top:10px;right:10px}
+.facts{list-style:none;font-size:13.5px;color:var(--taupe);border-top:1px solid var(--linen);padding-top:14px;margin-top:4px}
+.facts li{padding:3px 0;display:flex;gap:10px;align-items:center}
+.facts li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--espresso);color:var(--ivory);font-size:13px;letter-spacing:.06em;padding:12px 20px;opacity:0;transition:opacity .25s var(--ease),transform .25s var(--ease);z-index:90;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:1024px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .prop-row{grid-template-columns:repeat(2,1fr)}
+  .prop:nth-child(2){border-right:0}
+  .prop:nth-child(-n+2){border-bottom:1px solid var(--linen)}
+}
+@media (max-width:820px){
+  .nav-links{display:none}
+  .menu-btn{display:grid}
+  .nav{grid-template-columns:auto 1fr auto}
+  .nav .wordmark{font-size:21px}
+  .hero,.tw-grid,.ub-grid,.dl-grid{grid-template-columns:1fr}
+  .hero-art{order:-1;width:min(78%,360px)}
+  .seal{width:96px;height:96px;left:-18px;bottom:24px}
+  .seal .wordmark{font-size:10px}
+  .medals{justify-content:flex-start}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .qv-card{grid-template-columns:1fr}
+  .qv-img{aspect-ratio:1}
+  .gram-row{grid-template-columns:repeat(3,1fr)}
+  .gram-row div:nth-child(n+4){display:none}
+  .foot{grid-template-columns:1fr 1fr}
+  .foot>div:first-child{grid-column:1/-1}
+}
+@media (max-width:480px){
+  .prop-row{grid-template-columns:1fr}
+  .prop{border-right:0;border-bottom:1px solid var(--linen)}
+  .medal .disc{width:74px;height:74px}
+  .medal .disc svg{width:38px;height:38px}
+  .card h3{font-size:18px}
+  .tw-visual figure:nth-child(2){margin-top:32px}
+  .ub-pair img{aspect-ratio:3/4}
+  .ub-pair img:nth-child(2){margin-top:32px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Line-art symbols, drawn in the style of the brand's highlight covers -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-necklace" viewBox="0 0 48 48"><path d="M10 6c0 14 6 22 14 22s14-8 14-22"/><path d="M13 6c0 11 5 18 11 18s11-7 11-18"/><circle cx="24" cy="33" r="4"/><path d="M24 28v1"/></symbol>
+  <symbol id="i-bracelet" viewBox="0 0 48 48"><ellipse cx="24" cy="26" rx="16" ry="8"/><ellipse cx="24" cy="23" rx="16" ry="8"/><circle cx="24" cy="31" r="2"/></symbol>
+  <symbol id="i-earring" viewBox="0 0 48 48"><circle cx="16" cy="12" r="1.6"/><circle cx="32" cy="12" r="1.6"/><path d="M16 14a7 7 0 1 0 0.1 0"/><path d="M32 14v6"/><path d="M28 24l4-4 4 4-4 8z"/></symbol>
+  <symbol id="i-anklet" viewBox="0 0 48 48"><path d="M8 20c4 8 28 8 32 0"/><circle cx="12" cy="24" r="1.2"/><circle cx="18" cy="26.5" r="1.2"/><circle cx="24" cy="27.3" r="1.2"/><circle cx="30" cy="26.5" r="1.2"/><circle cx="36" cy="24" r="1.2"/><path d="M24 29v4"/><path d="M22 35l2-2 2 2-2 3z"/></symbol>
+  <symbol id="i-set" viewBox="0 0 48 48"><rect x="9" y="16" width="30" height="24"/><path d="M9 22h30"/><path d="M24 16c-3-6-9-6-9-2s6 2 9 2c3 0 9 2 9-2s-6-4-9 2z"/></symbol>
+  <symbol id="i-all" viewBox="0 0 48 48"><path d="M14 18l10-8 10 8-10 22z"/><path d="M14 18h20M20 18l4-8 4 8-4 22"/></symbol>
+  <symbol id="i-hoop" viewBox="0 0 48 48"><circle cx="24" cy="8" r="1.6"/><path d="M24 10c-9 2-12 10-12 17a12 12 0 0 0 24 0c0-7-3-15-12-17z"/></symbol>
+  <symbol id="i-huggie" viewBox="0 0 48 48"><circle cx="16" cy="22" r="7"/><circle cx="32" cy="22" r="7"/><path d="M12 16l-2-2M36 16l2-2"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 48 48"><circle cx="24" cy="6" r="1.6"/><path d="M24 8v8"/><circle cx="24" cy="18" r="2"/><path d="M24 20c-5 7-7 11-7 15a7 7 0 0 0 14 0c0-4-2-8-7-15z"/></symbol>
+  <symbol id="i-cuff" viewBox="0 0 48 48"><path d="M10 28c0-9 6-14 14-14s14 5 14 14"/><path d="M13 28c0-7 5-11 11-11s11 4 11 11"/><circle cx="10" cy="29" r="1.6"/><circle cx="38" cy="29" r="1.6"/></symbol>
+  <symbol id="i-tennis" viewBox="0 0 48 48"><path d="M6 26c6 6 30 6 36 0"/><path d="M6 22c6 6 30 6 36 0"/><circle cx="12" cy="26.5" r="1.4"/><circle cx="18" cy="28.6" r="1.4"/><circle cx="24" cy="29.3" r="1.4"/><circle cx="30" cy="28.6" r="1.4"/><circle cx="36" cy="26.5" r="1.4"/></symbol>
+  <symbol id="i-ring" viewBox="0 0 48 48"><circle cx="24" cy="29" r="11"/><circle cx="24" cy="29" r="8"/><path d="M19 14l5-5 5 5-5 4z"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.3-4.3"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-drop2" viewBox="0 0 48 48"><path d="M24 8c-7 10-11 16-11 22a11 11 0 0 0 22 0c0-6-4-12-11-22z"/><path d="M19 31a5 5 0 0 0 5 5"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 48 48"><path d="M12 36c0-14 10-24 26-24 0 16-10 26-24 26"/><path d="M12 36l14-14"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 48 48"><circle cx="24" cy="24" r="7"/><path d="M24 8v5M24 35v5M8 24h5M35 24h5M12.7 12.7l3.5 3.5M31.8 31.8l3.5 3.5M12.7 35.3l3.5-3.5M31.8 16.2l3.5-3.5"/></symbol>
+  <symbol id="i-van" viewBox="0 0 48 48"><path d="M6 14h22v18H6zM28 20h8l6 6v6H28"/><circle cx="14" cy="34" r="3.5"/><circle cx="34" cy="34" r="3.5"/></symbol>
+</svg>
+
+<div class="announce">Free same-day delivery in Brampton &amp; Mississauga <span class="heart w"></span> Shipping Canada-wide</div>
+
+<header>
+  <div class="wrap nav">
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#shop">Shop</a>
+      <a href="#twoways">Styling</a>
+      <a href="#care">Care</a>
+    </nav>
+    <button class="icon-btn menu-btn" aria-label="Jump to shop" onclick="location.hash='shop'"><svg><use href="#i-menu"/></svg></button>
+    <a href="#top" class="wordmark" aria-label="ZIVARAA home">Zivaraa</a>
+    <div class="nav-tools">
+      <button class="icon-btn" aria-label="Search the shop" onclick="document.getElementById('shop').scrollIntoView()"><svg><use href="#i-search"/></svg></button>
+      <button class="icon-btn" id="bagBtn" aria-label="Open bag"><svg><use href="#i-bag"/></svg><span class="count" id="count">0</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="wrap hero">
+    <div class="rv">
+      <span class="eyebrow">Everyday Jewellery</span>
+      <h1>Gold you never <em>take off.</em></h1>
+      <p class="lede">18k gold stainless steel that's waterproof, tarnish-free and hypoallergenic. Made to be worn on repeat, and delivered free the same day across Brampton and Mississauga.</p>
+      <div class="ctas">
+        <a class="btn" href="#shop">Shop the collection</a>
+        <a class="btn ghost" href="#twoways">How to style it</a>
+      </div>
+      <div class="promise">
+        <span><svg viewBox="0 0 48 48"><use href="#i-drop2"/></svg>Water-resistant</span>
+        <span><svg viewBox="0 0 48 48"><use href="#i-leaf"/></svg>Hypoallergenic</span>
+        <span><svg viewBox="0 0 48 48"><use href="#i-van"/></svg>Same-day local</span>
+      </div>
+    </div>
+    <div class="hero-art rv">
+      <div class="arch"><img src="assets/ig/favourites.jpg" alt="Gold huggie earring and layered gold necklaces, worn" width="825" height="1100" fetchpriority="high"></div>
+      <div class="seal" aria-hidden="true">
+        <svg viewBox="0 0 132 132"><defs><path id="ring" d="M66 66m-50 0a50 50 0 1 1 100 0a50 50 0 1 1-100 0"/></defs><text font-family="Jost" font-size="8.4" letter-spacing="3.2" fill="#7C665A"><textPath href="#ring">18K GOLD · STAINLESS STEEL · MADE TO STAY ·</textPath></text></svg>
+        <span class="wordmark">Ziv</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="cats" aria-label="Shop by category">
+    <div class="wrap medals" id="medals" role="group" aria-label="Filter products by category">
+      <!-- built by script -->
+    </div>
+  </section>
+
+  <section class="shop" id="shop">
+    <div class="wrap">
+      <div class="shop-head">
+        <div>
+          <h2 id="shopTitle">The collection</h2>
+          <p class="sub" id="shopSub">Every piece in 18k gold over stainless steel.</p>
+        </div>
+        <label class="sort">Sort
+          <select id="sort" aria-label="Sort products">
+            <option value="feat">Featured</option>
+            <option value="low">Price, low to high</option>
+            <option value="high">Price, high to low</option>
+          </select>
+        </label>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="twoways" id="twoways">
+    <div class="wrap tw-grid">
+      <div class="tw-photo rv"><img src="assets/ig/tennis-anklet.jpg" alt="The Tennis Necklace worn at the neck, and the same piece worn as an anklet" width="1100" height="1100" loading="lazy"></div>
+      <div class="tw-copy rv">
+        <span class="eyebrow">Styling</span>
+        <h2>One piece, <em>two ways.</em></h2>
+        <p>Our Tennis Necklace doubles as the prettiest anklet. Wear it at the neck on Friday and at the beach on Saturday, because your favourites deserve more than one way to wear them.</p>
+        <button class="btn" data-qv="n2">Shop the Tennis Necklace</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="props" id="care">
+    <div class="wrap">
+      <div class="props-head rv">
+        <h2>Made for real life</h2>
+        <p>Solid stainless steel under an 18k gold finish. It doesn't turn your skin green, and you don't have to take it off to wash your hands.</p>
+      </div>
+      <div class="prop-row rv">
+        <div class="prop"><svg viewBox="0 0 48 48"><use href="#i-drop2"/></svg><h3>Water-resistant</h3><p>Shower, swim, sweat. Keep it on.</p></div>
+        <div class="prop"><svg viewBox="0 0 48 48"><use href="#i-leaf"/></svg><h3>Hypoallergenic</h3><p>Kind to sensitive skin.</p></div>
+        <div class="prop"><svg viewBox="0 0 48 48"><use href="#i-sun"/></svg><h3>Holds its colour</h3><p>Wipe with a soft cloth and store it in its pouch.</p></div>
+        <div class="prop"><svg viewBox="0 0 48 48"><use href="#i-van"/></svg><h3>Same-day local</h3><p>Brampton and Mississauga. Canada-wide shipping.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="unbox">
+    <div class="wrap ub-grid">
+      <div class="ub-pair rv">
+        <img src="assets/ig/pouch-reel.jpg" alt="A ZIVARAA gift box holding a rectangle pendant necklace and matching earrings" width="619" height="1100" loading="lazy">
+        <img src="assets/ig/box-reel.jpg" alt="A linen ZIVARAA pouch being opened" width="619" height="1100" loading="lazy">
+      </div>
+      <div class="ub-copy rv">
+        <h2>Ready to give, the moment it arrives</h2>
+        <ol>
+          <li><b>The keepsake box</b><span>White, with the ZIVARAA wordmark in gold.</span></li>
+          <li><b>A linen pouch</b><span>To store it and keep it bright.</span></li>
+          <li><b>Delivered free, same day</b><span>Anywhere in Brampton and Mississauga.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="deliver">
+    <div class="wrap dl-grid">
+      <div>
+        <span class="eyebrow" style="color:#D8C5B8">Delivery</span>
+        <h2>Need it today?</h2>
+        <p>Enter your postal code to see if same-day delivery reaches you.</p>
+      </div>
+      <div>
+        <form class="dl-form" id="dlForm" autocomplete="postal-code">
+          <label for="postal">Postal code</label>
+          <input id="postal" name="postal" placeholder="e.g. L6Y 4R2" maxlength="7" inputmode="text" spellcheck="false">
+          <button type="submit">Check</button>
+        </form>
+        <p class="dl-result" id="dlResult" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="gram">
+    <div class="wrap">
+      <h2>Follow along <a href="https://www.instagram.com/shopzivaraa/" target="_blank" rel="noopener">@shopzivaraa</a></h2>
+      <div class="gram-row">
+        <div><a href="https://www.instagram.com/shopzivaraa/" target="_blank" rel="noopener"><img src="assets/ig/stacked.jpg" alt="A stack of gold bracelets and a ring on the hand" loading="lazy" width="825" height="1100"></a></div>
+        <div><a href="https://www.instagram.com/shopzivaraa/" target="_blank" rel="noopener"><img src="assets/ig/earrings.jpg" alt="Pearl drop huggies held up against the sea" loading="lazy" width="825" height="1100"></a></div>
+        <div><a href="https://www.instagram.com/shopzivaraa/" target="_blank" rel="noopener"><img src="assets/ig/new-pieces.jpg" alt="The ZIVARAA collection laid out on a display" loading="lazy" width="1100" height="1100"></a></div>
+        <div><a href="https://www.instagram.com/shopzivaraa/" target="_blank" rel="noopener"><img src="assets/ig/bangles.jpg" alt="Gold bangles resting on ivory satin" loading="lazy" width="1100" height="825"></a></div>
+        <div><a href="https://www.instagram.com/shopzivaraa/" target="_blank" rel="noopener"><img src="assets/ig/essentials.jpg" alt="Clover bracelet and necklace beside a ZIVARAA box" loading="lazy" width="1100" height="825"></a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="first">
+    <div class="wrap inner">
+      <div>
+        <h2>First order?</h2>
+        <p>Join the list and we'll send something for your first piece.</p>
+      </div>
+      <form class="signup" id="signup">
+        <label for="email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
+        <input id="email" type="email" placeholder="Your email" autocomplete="email" required>
+        <button class="btn" type="submit">Join</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><span class="wordmark">Zivaraa</span>Everyday jewellery in 18k gold stainless steel.<br>Brampton &amp; Mississauga, Ontario.</div>
+      <div><h4>Shop</h4><ul><li><a href="#shop" data-filter="necklaces">Necklaces</a></li><li><a href="#shop" data-filter="bracelets">Bracelets</a></li><li><a href="#shop" data-filter="earrings">Earrings</a></li><li><a href="#shop" data-filter="rings">Rings</a></li></ul></div>
+      <div><h4>Help</h4><ul><li><a href="#care">Jewellery care</a></li><li><a href="#top">Delivery</a></li><li><a href="#top">Returns</a></li></ul></div>
+      <div><h4>Follow</h4><ul><li><a href="https://www.instagram.com/shopzivaraa/" target="_blank" rel="noopener">Instagram</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 ZIVARAA</span><span>Concept preview. Prices shown are samples.</span></div>
+  </div>
+</footer>
+
+<!-- bag drawer -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="bag" aria-label="Shopping bag" aria-hidden="true">
+  <div class="dr-head"><h3>Your bag</h3><button class="icon-btn" data-close aria-label="Close bag"><svg><use href="#i-x"/></svg></button></div>
+  <div class="dr-body" id="bagBody"></div>
+  <div class="dr-foot" id="bagFoot"></div>
+</aside>
+
+<!-- quick view -->
+<div class="qv" id="qv" aria-hidden="true">
+  <div class="qv-card" role="dialog" aria-modal="true" aria-labelledby="qvTitle">
+    <div class="qv-img" id="qvImg"></div>
+    <div class="qv-info">
+      <button class="icon-btn qv-close" data-close aria-label="Close"><svg><use href="#i-x"/></svg></button>
+      <span class="eyebrow" id="qvCat"></span>
+      <h3 id="qvTitle"></h3>
+      <span class="price" id="qvPrice"></span>
+      <p id="qvDesc"></p>
+      <div id="qvOpts" hidden><span class="eyebrow">Ring size</span><div class="opt" id="qvFinish" style="margin-top:8px" role="group" aria-label="Ring size"></div></div>
+      <button class="btn" id="qvAdd">Add to bag</button>
+      <ul class="facts"><li>18k gold over stainless steel</li><li>Waterproof, tarnish-free, hypoallergenic</li><li>Arrives boxed, with a linen pouch</li></ul>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const CATS=[
+  {id:"all",label:"All",icon:"i-all"},
+  {id:"necklaces",label:"Necklaces",icon:"i-necklace"},
+  {id:"bracelets",label:"Bracelets",icon:"i-bracelet"},
+  {id:"earrings",label:"Earrings",icon:"i-earring"},
+  {id:"rings",label:"Rings",icon:"i-ring"},
+  {id:"sets",label:"Sets",icon:"i-set"},
+];
+// Names from @shopzivaraa captions. Prices are placeholders until the real list is in.
+const P=[
+  {id:"n1",cat:"necklaces",name:"Paperclip Necklace",price:42,img:"paperclip-reel.jpg",alt:"paperclip-tennis.jpg",tag:"Limited",desc:"Long, flat paperclip links on a fine chain. Wear it alone or layered."},
+  {id:"n2",cat:"necklaces",name:"Tennis Necklace",price:48,img:"paperclip-tennis.jpg",alt:"tennis-anklet.jpg",tag:"Two ways",desc:"A line of sparkling stones that doubles as the prettiest anklet."},
+  {id:"n3",cat:"necklaces",name:"Layered Necklace",price:46,img:"layered-reel.jpg",alt:"favourites.jpg",desc:"Pre-layered chains to lift all your simple outfits, with no tangling."},
+  {id:"n4",cat:"necklaces",name:"Rectangle Pendant",price:44,img:"pendant.jpg",alt:"pouch-reel.jpg",tag:"New",desc:"A sleek rectangular pendant set with alternating rows of delicate stones, on a fine chain."},
+  {id:"b1",cat:"bracelets",name:"Classic Tennis, Slim",price:38,img:"bracelet-mood.jpg",alt:"stacked.jpg",desc:"Our slim tennis bracelet. Small stones and a quiet sparkle."},
+  {id:"b2",cat:"bracelets",name:"Pink Tennis",price:38,img:"couldnt.jpg",alt:"bracelet-mood.jpg",desc:"The tennis bracelet in soft pink stones. It looks best stacked with a bangle."},
+  {id:"b3",cat:"bracelets",name:"Elora Gold",price:40,img:"elegance.jpg",alt:"essentials.jpg",desc:"A delicate station bracelet. Your new everyday essential."},
+  {id:"b4",cat:"bracelets",name:"Paperclip Charm",price:36,img:"set-reel.jpg",alt:"bracelet-mood.jpg",desc:"Paperclip links with a charm. It matches the Paperclip Necklace."},
+  {id:"b5",cat:"bracelets",name:"Signature Bangle",price:52,img:"golden-hour.jpg",alt:"bangles.jpg",tag:"Bestseller",desc:"The bangle that sells out. Polished, solid, and made for golden hour."},
+  {id:"e1",cat:"earrings",name:"Pearl Drop Huggies",price:34,img:"earrings.jpg",alt:"repeat.jpg",tag:"Summer pick",desc:"Chunky gold huggies with a pearl drop. The pair you'll reach for all summer."},
+  {id:"r1",cat:"rings",name:"Stacking Rings",price:30,img:"rings.jpg",alt:"stacked.jpg",tag:"Sizes 6–9",sizes:["6","7","8","9"],desc:"Bold, polished rings in sizes 6 to 9. Some won't be restocked."},
+  {id:"s1",cat:"sets",name:"The Everyday Set",price:72,img:"pouch-reel.jpg",alt:"new-pieces.jpg",tag:"Gift ready",desc:"The Rectangle Pendant with matching earrings, boxed together and ready to give."},
+];
+const $=s=>document.querySelector(s);
+const money=new Intl.NumberFormat("en-CA",{style:"currency",currency:"CAD"});
+const media=(p,withAlt)=>`<img src="assets/ig/${p.img}" alt="${p.name}" loading="lazy">`+(withAlt&&p.alt?`<img class="alt" src="assets/ig/${p.alt}" alt="" loading="lazy">`:"");
+let state={cat:"all",sort:"feat"};
+let bag=[];
+try{bag=JSON.parse(localStorage.getItem("zv-bag")||"[]").filter(l=>P.some(p=>p.id===l.id))}catch(e){}
+
+// medallions
+$("#medals").innerHTML=CATS.map(c=>`<button class="medal" data-cat="${c.id}" aria-pressed="${c.id==="all"}"><span class="disc"><svg viewBox="0 0 48 48"><use href="#${c.icon}"/></svg></span><span class="label">${c.label}</span></button>`).join("");
+
+function render(){
+  let list=P.filter(p=>state.cat==="all"||p.cat===state.cat);
+  if(state.sort==="low")list=[...list].sort((a,b)=>a.price-b.price);
+  if(state.sort==="high")list=[...list].sort((a,b)=>b.price-a.price);
+  $("#grid").innerHTML=list.map(p=>`
+    <article class="card">
+      <div class="img" data-qv="${p.id}">
+        ${media(p,true)}
+        ${p.tag?`<span class="tag">${p.tag}</span>`:""}
+        ${p.sizes?`<button class="quick" data-qv="${p.id}" aria-label="Choose a size for ${p.name}">Choose size</button>`:`<button class="quick" data-add="${p.id}" aria-label="Add ${p.name} to bag">Quick add</button>`}
+      </div>
+      <div>
+        <div class="meta"><h3>${p.name}</h3><span class="price">${money.format(p.price)}</span></div>
+        <span class="material">18k gold · waterproof</span>
+      </div>
+    </article>`).join("");
+  const c=CATS.find(c=>c.id===state.cat);
+  $("#shopTitle").textContent=state.cat==="all"?"The collection":c.label;
+  $("#shopSub").textContent=`${list.length} ${list.length===1?"piece":"pieces"}, all 18k gold stainless steel.`;
+  document.querySelectorAll(".medal").forEach(m=>m.setAttribute("aria-pressed",m.dataset.cat===state.cat));
+}
+function setCat(c,scroll){state.cat=c;render();if(scroll)$("#shop").scrollIntoView({behavior:"smooth"});history.replaceState(null,"",c==="all"?location.pathname:`?c=${c}`);}
+const q=new URLSearchParams(location.search).get("c");if(CATS.some(c=>c.id===q))state.cat=q;
+render();
+
+// bag
+function save(){try{localStorage.setItem("zv-bag",JSON.stringify(bag))}catch(e){}}
+function add(id,finish=""){
+  const key=id+"|"+finish;const l=bag.find(x=>x.key===key);
+  l?l.qty++:bag.push({key,id,finish,qty:1});save();drawBag();
+  const p=P.find(p=>p.id===id);toast(`${p.name} added to your bag`);
+  const c=$("#count");c.classList.remove("bump");void c.offsetWidth;c.classList.add("bump");
+}
+function drawBag(){
+  const n=bag.reduce((s,l)=>s+l.qty,0);const c=$("#count");c.textContent=n;c.classList.toggle("on",n>0);
+  if(!bag.length){$("#bagBody").innerHTML=`<div class="empty"><svg viewBox="0 0 48 48"><use href="#i-set"/></svg><p>Your bag is empty.</p><button class="btn ghost" style="margin-top:20px" data-close data-goto>Start with the bestsellers</button></div>`;$("#bagFoot").innerHTML="";return;}
+  $("#bagBody").innerHTML=bag.map(l=>{const p=P.find(p=>p.id===l.id);return`
+    <div class="line"><div class="thumb">${media(p)}</div>
+      <div><h4>${p.name}</h4><small>${l.finish?`Size ${l.finish} · `:""}18k gold stainless steel</small>
+        <div class="qty"><button data-dec="${l.key}" aria-label="Decrease quantity">−</button><span>${l.qty}</span><button data-inc="${l.key}" aria-label="Increase quantity">+</button></div><br><button class="rm" data-rm="${l.key}">Remove</button></div>
+      <span class="lp">${money.format(p.price*l.qty)}</span></div>`}).join("");
+  const sub=bag.reduce((s,l)=>s+P.find(p=>p.id===l.id).price*l.qty,0);
+  $("#bagFoot").innerHTML=`<div class="row total"><span>Subtotal</span><span>${money.format(sub)}</span></div><p class="note">Tax worked out at checkout. Free same-day delivery in Brampton and Mississauga.</p><button class="btn" id="checkout">Checkout</button>`;
+}
+drawBag();
+
+// open/close
+let lastFocus=null;
+function open(el){lastFocus=document.activeElement;el.classList.add("on");el.setAttribute("aria-hidden","false");$("#scrim").classList.add("on");document.body.style.overflow="hidden";setTimeout(()=>el.querySelector("[data-close]")?.focus(),50);}
+function closeAll(){document.querySelectorAll(".drawer.on,.qv.on").forEach(e=>{e.classList.remove("on");e.setAttribute("aria-hidden","true")});$("#scrim").classList.remove("on");document.body.style.overflow="";lastFocus?.focus?.();}
+$("#bagBtn").onclick=()=>open($("#bag"));
+$("#scrim").onclick=closeAll;
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAll()});
+$("#qv").addEventListener("click",e=>{if(e.target.id==="qv")closeAll()});
+
+let qvItem=null,qvFinish="";
+function quickView(id){
+  const p=P.find(p=>p.id===id);qvItem=p;qvFinish="";
+  $("#qvImg").innerHTML=media(p);$("#qvCat").textContent=CATS.find(c=>c.id===p.cat).label;
+  $("#qvTitle").textContent=p.name;$("#qvPrice").textContent=money.format(p.price);$("#qvDesc").textContent=p.desc;
+  $("#qvOpts").hidden=!p.sizes;$("#qvFinish").innerHTML=(p.sizes||[]).map(f=>`<button aria-pressed="false" data-finish="${f}">${f}</button>`).join("");$("#qvAdd").textContent=p.sizes?"Choose a size":"Add to bag";
+  open($("#qv"));
+}
+
+document.addEventListener("click",e=>{
+  const t=e.target.closest("button,[data-qv],a");if(!t)return;
+  if(t.dataset.add){e.stopPropagation();add(t.dataset.add);return;}
+  if(t.dataset.qv&&t.classList.contains("quick")){e.stopPropagation();}
+  if(t.dataset.qv){quickView(t.dataset.qv);return;}
+  if(t.dataset.cat){setCat(t.dataset.cat,false);return;}
+  if(t.dataset.filter){e.preventDefault();setCat(t.dataset.filter,true);return;}
+  if(t.dataset.finish){qvFinish=t.dataset.finish;$("#qvAdd").textContent="Add to bag";document.querySelectorAll("#qvFinish button").forEach(b=>b.setAttribute("aria-pressed",b===t));return;}
+  if(t.id==="qvAdd"){if(qvItem.sizes&&!qvFinish){toast("Pick a ring size first");return;}add(qvItem.id,qvFinish);closeAll();return;}
+  if(t.dataset.close!==undefined){closeAll();if(t.dataset.goto!==undefined)setCat("all",true);return;}
+  const k=t.dataset.inc||t.dataset.dec||t.dataset.rm;
+  if(k){const l=bag.find(x=>x.key===k);if(t.dataset.inc)l.qty++;else if(t.dataset.dec)l.qty--;else l.qty=0;bag=bag.filter(x=>x.qty>0);save();drawBag();return;}
+  if(t.id==="checkout"){toast("Checkout is switched off in this preview");}
+});
+$("#sort").onchange=e=>{state.sort=e.target.value;render();};
+
+// same-day checker: Brampton (L6P–L6Z, L7A) and Mississauga (L4T–L4Z, L5A–L5W)
+$("#dlForm").onsubmit=e=>{
+  e.preventDefault();
+  const v=$("#postal").value.toUpperCase().replace(/\s/g,"");const r=$("#dlResult");
+  if(!/^[A-Z]\d[A-Z](\d[A-Z]\d)?$/.test(v)){r.textContent="That doesn't look like a Canadian postal code. Try something like L6Y 4R2.";return;}
+  const fsa=v.slice(0,3),L=fsa[2],d=fsa[1];
+  const bram=(fsa[0]==="L"&&d==="6"&&L>="P"&&L<="Z")||fsa==="L7A";
+  const sauga=fsa[0]==="L"&&((d==="4"&&L>="T"&&L<="Z")||(d==="5"&&L>="A"&&L<="W"));
+  r.innerHTML=bram||sauga?`<b>Good news.</b> Free same-day delivery reaches ${fsa} in ${bram?"Brampton":"Mississauga"}.`:`${fsa} is outside our same-day area, but we ship there. <b>Canada-wide delivery</b> applies.`;
+};
+$("#signup").onsubmit=e=>{e.preventDefault();toast("Thanks. You're on the list.");e.target.reset();};
+
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2200);}
+
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
