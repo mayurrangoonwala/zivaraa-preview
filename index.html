@@ -31,7 +31,9 @@
   --white:#FFFFFF;
   --serif:"Cormorant Garamond",Georgia,serif;
   --sans:"Jost",system-ui,sans-serif;
-  --ease:cubic-bezier(.22,.61,.36,1);
+  --ease:cubic-bezier(.23,1,.32,1);          /* strong ease-out */
+  --ease-io:cubic-bezier(.77,0,.175,1);      /* on-screen movement */
+  --ease-drawer:cubic-bezier(.32,.72,0,1);   /* iOS-like sheet */
   --gutter:clamp(16px,4vw,48px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -72,8 +74,6 @@ header{position:sticky;top:0;z-index:40;background:rgba(251,247,242,.92);backdro
 .icon-btn svg{width:21px;height:21px;stroke:var(--mocha);fill:none;stroke-width:1.3}
 .count{position:absolute;top:5px;right:4px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--mocha);color:var(--ivory);font-size:10px;display:grid;place-items:center;font-weight:500;opacity:0;transform:scale(.6);transition:transform .2s var(--ease),opacity .2s var(--ease)}
 .count.on{opacity:1;transform:scale(1)}
-.count.bump{animation:bump .35s var(--ease)}
-@keyframes bump{50%{transform:scale(1.3)}}
 .menu-btn{display:none}
 
 /* hero */
@@ -213,7 +213,7 @@ footer{padding:56px 0 40px;font-size:14px;color:var(--taupe)}
 /* drawers */
 .scrim{position:fixed;inset:0;background:rgba(51,37,29,.35);opacity:0;pointer-events:none;transition:opacity .3s var(--ease);z-index:60}
 .scrim.on{opacity:1;pointer-events:auto}
-.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--ivory);z-index:70;transform:translateX(100%);transition:transform .38s var(--ease);display:flex;flex-direction:column}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--ivory);z-index:70;transform:translateX(100%);transition:transform .45s var(--ease-drawer);display:flex;flex-direction:column}
 .drawer.on{transform:none}
 .dr-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--linen)}
 .dr-head h3{font-size:26px}
@@ -256,8 +256,40 @@ footer{padding:56px 0 40px;font-size:14px;color:var(--taupe)}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--espresso);color:var(--ivory);font-size:13px;letter-spacing:.06em;padding:12px 20px;opacity:0;transition:opacity .25s var(--ease),transform .25s var(--ease);z-index:90;pointer-events:none}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 
+/* hero entrance — once per visit, marketing tier */
+.hero h1 .ln{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.hero h1 .ln>span{display:inline-block;animation:rise 1s var(--ease) both}
+.hero h1 .ln:nth-child(2)>span{animation-delay:.09s}
+.hero .lede,.hero .ctas,.hero .promise{animation:fadeUp .8s var(--ease) both}
+.hero .lede{animation-delay:.28s}.hero .ctas{animation-delay:.36s}.hero .promise{animation-delay:.44s}
+.arch{animation:unveil 1.2s var(--ease-io) .1s both}
+.arch img{animation:settle 1.6s var(--ease) .1s both}
+.seal{animation:fadeUp .8s var(--ease) .7s both}
+@keyframes rise{from{transform:translateY(105%)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}}
+@keyframes unveil{from{clip-path:inset(100% 0 0 0 round 230px 230px 0 0)}to{clip-path:inset(0 0 0 0 round 230px 230px 0 0)}}
+@keyframes settle{from{transform:scale(1.12)}}
+
+/* scroll-linked drift, off the main thread where supported */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .tw-photo img,.ub-pair img:nth-child(2){animation:drift linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+    .tw-photo img{scale:1.1}
+    @keyframes drift{from{transform:translateY(-4%)}to{transform:translateY(4%)}}
+  }
+}
+
+/* press feedback */
+.medal:active .disc{transform:scale(.96);transition-duration:.1s}
+.quick:active{transform:scale(.97)}
+
+/* fly-to-bag ghost */
+.fly{position:fixed;z-index:95;pointer-events:none;overflow:hidden;background:var(--blush)}
+.fly img{width:100%;height:100%;object-fit:cover}
+
 /* reveal */
-.rv{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv,.rv-kids>*{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:calc(var(--i,0)*70ms)}
+.rv-kids.in>*{opacity:1;transform:none}
 .rv.in{opacity:1;transform:none}
 
 @media (max-width:1024px){
@@ -296,7 +328,7 @@ footer{padding:56px 0 40px;font-size:14px;color:var(--taupe)}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
-  .rv{opacity:1;transform:none}
+  .rv,.rv-kids>*{opacity:1;transform:none}
 }
 </style>
 </head>
@@ -346,8 +378,8 @@ footer{padding:56px 0 40px;font-size:14px;color:var(--taupe)}
 
 <main id="top">
   <section class="wrap hero">
-    <div class="rv">
-      <h1>Gold you never <em>take off.</em></h1>
+    <div class="hero-copy">
+      <h1><span class="ln"><span>Gold you never</span></span> <span class="ln"><span><em>take off.</em></span></span></h1>
       <p class="lede">18k gold stainless steel that's waterproof, tarnish-free and hypoallergenic. Made to be worn on repeat, and delivered free the same day across Brampton and Mississauga.</p>
       <div class="ctas">
         <a class="btn" href="#shop">Shop the collection</a>
@@ -359,7 +391,7 @@ footer{padding:56px 0 40px;font-size:14px;color:var(--taupe)}
         <span><svg viewBox="0 0 48 48"><use href="#i-van"/></svg>Same-day local</span>
       </div>
     </div>
-    <div class="hero-art rv">
+    <div class="hero-art">
       <div class="arch"><img src="assets/ig/favourites.jpg" alt="Gold huggie earring and layered gold necklaces, worn" width="825" height="1100" fetchpriority="high"></div>
       <div class="seal" aria-hidden="true">
         <svg viewBox="0 0 132 132"><defs><path id="ring" d="M66 66m-50 0a50 50 0 1 1 100 0a50 50 0 1 1-100 0"/></defs><text font-family="Jost" font-size="8.4" letter-spacing="3.2" fill="#7C665A"><textPath href="#ring">18K GOLD · STAINLESS STEEL · MADE TO STAY ·</textPath></text></svg>
@@ -411,7 +443,7 @@ footer{padding:56px 0 40px;font-size:14px;color:var(--taupe)}
         <h2>Made for real life</h2>
         <p>Solid stainless steel under an 18k gold finish. It doesn't turn your skin green, and you don't have to take it off to wash your hands.</p>
       </div>
-      <div class="prop-row rv">
+      <div class="prop-row rv-kids">
         <div class="prop"><svg viewBox="0 0 48 48"><use href="#i-drop2"/></svg><h3>Water-resistant</h3><p>Shower, swim, sweat. Keep it on.</p></div>
         <div class="prop"><svg viewBox="0 0 48 48"><use href="#i-leaf"/></svg><h3>Hypoallergenic</h3><p>Kind to sensitive skin.</p></div>
         <div class="prop"><svg viewBox="0 0 48 48"><use href="#i-sun"/></svg><h3>Holds its colour</h3><p>Wipe with a soft cloth and store it in its pouch.</p></div>
@@ -458,7 +490,7 @@ footer{padding:56px 0 40px;font-size:14px;color:var(--taupe)}
   <section class="gram">
     <div class="wrap">
       <h2>Follow along <a href="https://www.instagram.com/shopzivaraa/" target="_blank" rel="noopener">@shopzivaraa</a></h2>
-      <div class="gram-row">
+      <div class="gram-row rv-kids">
         <div><a href="https://www.instagram.com/shopzivaraa/" target="_blank" rel="noopener"><img src="assets/ig/stacked.jpg" alt="A stack of gold bracelets and a ring on the hand" loading="lazy" width="825" height="1100"></a></div>
         <div><a href="https://www.instagram.com/shopzivaraa/" target="_blank" rel="noopener"><img src="assets/ig/earrings.jpg" alt="Pearl drop huggies held up against the sea" loading="lazy" width="825" height="1100"></a></div>
         <div><a href="https://www.instagram.com/shopzivaraa/" target="_blank" rel="noopener"><img src="assets/ig/new-pieces.jpg" alt="The ZIVARAA collection laid out on a display" loading="lazy" width="1100" height="1100"></a></div>
@@ -577,17 +609,37 @@ function render(){
   $("#shopSub").textContent=`${list.length} ${list.length===1?"piece":"pieces"}, all 18k gold stainless steel.`;
   document.querySelectorAll(".medal").forEach(m=>m.setAttribute("aria-pressed",m.dataset.cat===state.cat));
 }
-function setCat(c,scroll){state.cat=c;render();if(scroll)$("#shop").scrollIntoView({behavior:"smooth"});history.replaceState(null,"",c==="all"?location.pathname:`?c=${c}`);}
+function setCat(c,scroll){const changed=c!==state.cat;state.cat=c;render();if(changed)stagger();if(scroll)$("#shop").scrollIntoView({behavior:"smooth"});history.replaceState(null,"",c==="all"?location.pathname:`?c=${c}`);}
 const q=new URLSearchParams(location.search).get("c");if(CATS.some(c=>c.id===q))state.cat=q;
 render();
 
+const calm=matchMedia("(prefers-reduced-motion: reduce)");
+function stagger(){
+  [...$("#grid").children].forEach((el,i)=>el.animate(
+    calm.matches?[{opacity:0},{opacity:1}]:[{opacity:0,transform:"translateY(12px)"},{opacity:1,transform:"none"}],
+    {duration:calm.matches?150:260,delay:Math.min(i,8)*40,easing:"cubic-bezier(.23,1,.32,1)",fill:"backwards"}));
+}
+// fly a copy of the product photo into the bag: shows where it went
+function flyToBag(src){
+  const bagEl=$("#bagBtn");if(!src||calm.matches)return;
+  const a=src.getBoundingClientRect(),b=bagEl.getBoundingClientRect();
+  if(!a.width||a.bottom<0||a.top>innerHeight)return;
+  const g=document.createElement("div");g.className="fly";
+  Object.assign(g.style,{left:a.left+"px",top:a.top+"px",width:a.width+"px",height:a.height+"px"});
+  const img=src.querySelector("img");if(img)g.appendChild(img.cloneNode());
+  document.body.appendChild(g);
+  const dx=b.left+b.width/2-(a.left+a.width/2),dy=b.top+b.height/2-(a.top+a.height/2),s=28/a.width;
+  g.animate([{transform:"none",opacity:1,borderRadius:"0"},{transform:`translate(${dx}px,${dy}px) scale(${s})`,opacity:.4,borderRadius:"50%"}],
+    {duration:560,easing:"cubic-bezier(.77,0,.175,1)"}).onfinish=()=>{g.remove();pulse();};
+}
+function pulse(){$("#count").animate([{transform:"scale(1)"},{transform:"scale(1.3)"},{transform:"scale(1)"}],{duration:300,easing:"cubic-bezier(.23,1,.32,1)"});}
 // bag
 function save(){try{localStorage.setItem("zv-bag",JSON.stringify(bag))}catch(e){}}
-function add(id,finish=""){
+function add(id,finish="",from){
   const key=id+"|"+finish;const l=bag.find(x=>x.key===key);
   l?l.qty++:bag.push({key,id,finish,qty:1});save();drawBag();
   const p=P.find(p=>p.id===id);toast(`${p.name} added to your bag`);
-  const c=$("#count");c.classList.remove("bump");void c.offsetWidth;c.classList.add("bump");
+  if(from)flyToBag(from);else pulse();
 }
 function drawBag(){
   const n=bag.reduce((s,l)=>s+l.qty,0);const c=$("#count");c.textContent=n;c.classList.toggle("on",n>0);
@@ -622,19 +674,19 @@ function quickView(id){
 
 document.addEventListener("click",e=>{
   const t=e.target.closest("button,[data-qv],a");if(!t)return;
-  if(t.dataset.add){e.stopPropagation();add(t.dataset.add);return;}
+  if(t.dataset.add){e.stopPropagation();add(t.dataset.add,"",t.closest(".img"));return;}
   if(t.dataset.qv&&t.classList.contains("quick")){e.stopPropagation();}
   if(t.dataset.qv){quickView(t.dataset.qv);return;}
   if(t.dataset.cat){setCat(t.dataset.cat,false);return;}
   if(t.dataset.filter){e.preventDefault();setCat(t.dataset.filter,true);return;}
   if(t.dataset.finish){qvFinish=t.dataset.finish;$("#qvAdd").textContent="Add to bag";document.querySelectorAll("#qvFinish button").forEach(b=>b.setAttribute("aria-pressed",b===t));return;}
-  if(t.id==="qvAdd"){if(qvItem.sizes&&!qvFinish){toast("Pick a ring size first");return;}add(qvItem.id,qvFinish);closeAll();return;}
+  if(t.id==="qvAdd"){if(qvItem.sizes&&!qvFinish){toast("Pick a ring size first");return;}const from=$("#qvImg");closeAll();add(qvItem.id,qvFinish,from);return;}
   if(t.dataset.close!==undefined){closeAll();if(t.dataset.goto!==undefined)setCat("all",true);return;}
   const k=t.dataset.inc||t.dataset.dec||t.dataset.rm;
   if(k){const l=bag.find(x=>x.key===k);if(t.dataset.inc)l.qty++;else if(t.dataset.dec)l.qty--;else l.qty=0;bag=bag.filter(x=>x.qty>0);save();drawBag();return;}
   if(t.id==="checkout"){toast("Checkout is switched off in this preview");}
 });
-$("#sort").onchange=e=>{state.sort=e.target.value;render();};
+$("#sort").onchange=e=>{state.sort=e.target.value;render();stagger();};
 
 // same-day checker: Brampton (L6P–L6Z, L7A) and Mississauga (L4T–L4Z, L5A–L5W)
 $("#dlForm").onsubmit=e=>{
@@ -652,7 +704,8 @@ let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on
 
 // reveal on scroll
 const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}}),{threshold:.15});
-document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+document.querySelectorAll(".rv-kids").forEach(g=>[...g.children].forEach((c,i)=>c.style.setProperty("--i",i)));
+document.querySelectorAll(".rv,.rv-kids").forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
